@@ -1,0 +1,46 @@
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        table th,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+    <link rel="stylesheet" href="/style.css" />
+
+</head>
+
+<body>
+    <h1>List Tasks</h1> </br>
+    <h1> <a href="/">Insert Tasks</a>
+        <a href="/gettasks">List Tasks</a>
+        <a href="/updatetask">Update Tasks</a>
+        <a href="/deletetask">Delete Tasks by ID</a>
+        <a href="/deletecompleted">Delete Completed Tasks</a>
+    </h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>PIC</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Description</th>
+        </tr>
+        <% for (let i=0;i<taskDb.length;i++){ %>
+        <tr>
+            <td><%= taskDb[i].taskID %> </td>
+            <td><%= taskDb[i].taskName %> </td>
+            <td><%= taskDb[i].taskPIC %></td>
+            <td><%= taskDb[i].taskDue %></td>
+            <td><%= taskDb[i].taskStatus %></td>
+            <td><%= taskDb[i].taskDesc %></td>
+        </tr>
+        <%}%>
+    </table>
+</body>
+</html>

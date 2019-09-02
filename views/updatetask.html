@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Update Tasks</h1></br>
+    <h1>
+        <a href="/">Insert Tasks</a>
+        <a href="/gettasks">List Tasks</a>
+        <a href="/updatetask">Update Tasks</a>
+        <a href="/deletetask">Delete Tasks by ID</a>
+        <a href="/deletecompleted">Delete Completed Tasks</a>
+    </h1>
+    <form action="/updateuserdata" method="POST">
+        Task Old ID <input type="number" method="POST" name="idold" /> </br>
+        Task New Status <select method="POST" name="statusnew">
+            <option method="POST" value="Complete">Complete</option>
+            <option method="POST" value="inProgress">in Progress</option>
+        </select> </br>
+        <!-- Task New Description <input type="text" method="POST" name="descnew" /> </br> -->
+        <input type="submit" value="Submit" /> </br>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Delete Task</h1></br>
+    <h1>
+        <a href="/">Insert Task</a>
+        <a href="/gettasks">List Task</a>
+        <a href="/updatetask">Update Task</a>
+        <a href="/deletetask">Delete Task by ID</a>
+        <a href="/deletecompleted">Delete Completed Tasks</a>
+    </h1>
+    <form action="/deletebyid" method="POST">
+        Task Old ID <input type="number" method="POST" name="id" /> </br>
+        <input type="submit" value="Submit" /> </br>
+    </form>
+</body>
+</html>
