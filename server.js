@@ -1,6 +1,7 @@
 const express = require("express");
 const mongodb = require("mongodb");
 const bodyparser = require('body-parser');
+var ObjectID = require('mongodb').ObjectID;
 //Configure Express
 const app = express()
 app.engine('html', require('ejs').renderFile);
@@ -41,7 +42,6 @@ app.get('/', function (req, res) {
 app.post('/addnewtask', function (req, res) {
     let taskDetails = req.body;
     db.collection('tasks').insertOne({
-        taskID: taskDetails.id,
         taskName: taskDetails.name,
         taskPIC: taskDetails.pic,
         taskDue: taskDetails.date,
@@ -67,13 +67,13 @@ app.get('/updatetask', function (req, res) {
     res.sendFile(__dirname + '/views/updatetask.html');
 });
 //POST request: receive the details from the client and do the update
-app.post('/updateuserdata', function (req, res) {
-    let taskDetails = req.body;
+app.post('/updatetaskstatus', function (req, res) {
+    let upTaskID = req.body;
     let filter = {
-        taskID: taskDetails.idold
+        _id: ObjectID(upTaskID.id)
     };
     let theUpdate = {
-        $set: {taskStatus: taskDetails.statusnew}
+        $set: {taskStatus: upTaskID.statusnew}
     };
     db.collection('tasks').updateOne(filter, theUpdate);
     res.redirect('/gettasks'); // redirect the client to list users page
@@ -87,7 +87,7 @@ app.get('/deletetask', function (req, res) {
 app.post('/deletebyid', function (req, res) {
     let taskDetails = req.body;
     let filter = {
-        taskID: taskDetails.id
+        _id: ObjectID(taskDetails.id)
     };
     db.collection('tasks').deleteOne(filter);
     res.redirect('/gettasks'); // redirect the client to list users page

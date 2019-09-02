@@ -13,8 +13,8 @@
         <a href="/deletetask">Delete Tasks by ID</a>
         <a href="/deletecompleted">Delete Completed Tasks</a>
     </h1>
-    <form action="/updateuserdata" method="POST">
-        Task Old ID <input type="number" method="POST" name="idold" /> </br>
+    <form action="/updatetaskstatus" method="POST">
+        Task ID <input type="string" method="POST" name="id" /> </br>
         Task New Status <select method="POST" name="statusnew">
             <option method="POST" value="Complete">Complete</option>
             <option method="POST" value="inProgress">in Progress</option>
