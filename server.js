@@ -110,3 +110,21 @@ app.post('/deletecompleted', function (req, res) {
         res.redirect('/gettasks');
     }
 });
+
+app.get('/deleteOldComplete', function (req, res) {
+    res.sendFile(__dirname + '/views/deleteextra.html');
+});
+
+app.post('/deleteOldComplete', function (req, res) {
+    let today = "2019-09-03";
+    let userrespond = req.body;
+    if ( userrespond.respond === "yes") {
+        db.collection('tasks').deleteMany({
+            taskStatus: "Complete", taskDue: {$lt: today}
+        });
+        res.redirect('/gettasks'); // redirect the client to list users page
+    }
+    else {
+        res.redirect('/gettasks');
+    }
+});
