@@ -1,7 +1,7 @@
 const express = require("express");
 const mongodb = require("mongodb");
 const bodyparser = require('body-parser');
-// var ObjectID = require('mongodb').ObjectID;
+
 //Configure Express
 const app = express()
 app.engine('html', require('ejs').renderFile);
@@ -42,7 +42,7 @@ app.get('/', function (req, res) {
 app.post('/addnewtask', function (req, res) {
     let taskDetails = req.body;
     db.collection('tasks').insertOne({
-        taskID : Math.floor(100000 + Math.random() * 900000),
+        taskID : Math.floor(Math.random() * 10000),
         taskName: taskDetails.name,
         taskPIC: taskDetails.pic,
         taskDue: taskDetails.date,
@@ -72,7 +72,6 @@ app.post('/updatetaskstatus', function (req, res) {
     let upTaskID = req.body;
     let filter = {
         taskID : parseInt(upTaskID.id)
-        // _id: ObjectID(upTaskID.id)
     };
     let theUpdate = {
         $set: {taskStatus: upTaskID.statusnew}
@@ -90,7 +89,6 @@ app.post('/deletebyid', function (req, res) {
     let taskDetails = req.body;
     let filter = {
         taskID : parseInt(taskDetails.id)
-        // _id: ObjectID(taskDetails.id)
     };
     db.collection('tasks').deleteOne(filter);
     res.redirect('/gettasks'); // redirect the client to list users page
